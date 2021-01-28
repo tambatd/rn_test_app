@@ -5,40 +5,46 @@ import { StyleSheet, Text, View } from 'react-native';
 import {Image} from 'react-native' ; 
 import { TextInput, useState  } from 'react-native';
 
-//const [value, onChangeText] = React.useState('Useless Placeholder');
 
 
 export default function App() {
-  //const [text, setText] = useState('');
-  const [value, onChangeText] = React.useState('Login');
+  const [value, onChangeText] = React.useState('');
+  const [UNvalue, onChangeUserName] = React.useState('');
 
   return (
     <View style={styles.container}>
     <StatusBar style="auto" />
 
+      {/* Top Right and Top Left Background Images*/}
+      <Image style={[styles.blue, {}]} source={require('./public/images/blue.png')} />
+      <Image style={[styles.pink, {}]} source={require('./public/images/pink.png')} />
 
-      <View style={[styles.blue, {}]}>
-        <Image source={require('./public/images/blue.png')} />
-      </View>
+      {/*Login Banner*/}
+      <Text style={styles.login_baner}>ログイン</Text>
+      <Image style={[styles.login_banner_image, {}]} source={require('./public/images/logo.png')} />
 
-  
+      {/*Email and Password Inputs*/}
+      <TextInput  placeholder="Ｅメイル"
+      style={{ height: 40, borderColor: 'white', textAlign: 'left',   left: -68
+      , top: 390}}
+      onChangeText={username => onChangeUserName(username)}
+      value={UNvalue}
+    />
+      <View style={[styles.line, {top: 425}]}></View>
 
-      <View style={[styles.pink, {}]}>
-        <Image source={require('./public/images/pink.png')} />
-      </View>
-
-
-      <TextInput underlineColorAndroid={'transparent'}
-      style={{ height: 40, border: "None", borderWidth: 1, top: 200}}
+      <TextInput placeholder="パスワード"
+      style={{ height: 40, borderColor: 'white', left: -60
+      , top: 390}}
       onChangeText={text => onChangeText(text)}
       value={value}
     />
-      <View style={[styles.line, {}]}></View>
+      <View style={[styles.line, {top: 463,}]}></View>
+
+      {/*Submit*/}
 
       <View style={[styles.login, {}]}>
         <View style={styles.login_back}></View>
-        <Text style={styles.login_text}>Login</Text>
-        
+        <Text style={styles.login_text}>ログイン</Text>
       </View>
 
    
@@ -47,72 +53,7 @@ export default function App() {
     </View>
   );
 }
+
+const styles = getStyleSheet();
 //const styles2 =getStyleSheet
-const styles = StyleSheet.create({
-  container: {
-    //flex: 1,
-    flexDirection: "column",
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    
-  },
-  line:{
-    position: "absolute",
-    width: 185.01,
-    height: 0,
-    left: "center",
-    top: 463,
-    borderBottomColor: "#C4C4C4",
-    borderBottomWidth: 1,
-    //border: "1px solid #C4C4C4",
-  },
-  pink:{
-    /* Vector 1 */
-    position: "absolute",
-    width: 216,
-    height: 249.5,
-    left: 198.5,
-    top: -0.5,
-    color: "#FF9DD4"
-},
-blue:{
-    /* Vector 2 */
-    position: "absolute",
-    width: 216,
-    height: 249.5,
-    left: 0,
-    top: 600,
-    color: "#4774D5",
-    //transform: [{ rotate: "-180deg" }]
-},
-login:{
-position: "absolute",
-width: "174.24",
-height: "38",
-left: "center",
-top: 497,
-},
-login_text:{
-  position: "absolute",
-  width: 116.78,
-  height: 25.95,
-  left: 28.73,
-  top: 6.49,
-  
-  //fontFamily: "Noto Sans Javanese",
-  fontStyle: "normal",
-  fontWeight: "normal",
-  fontSize: 14.8293,
-  lineHeight: 30,
-  textAlign: "center",
-  
-  color: "#000000",
-},
-login_back:{  
-  width: 174,
-  height: 38,
-  backgroundColor: "#83EFEB",
-  borderRadius: 30,
-}
-});
+
